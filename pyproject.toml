@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ide-workshop"
+version = "0.1.0"
+description = ""
+authors = ["Sondre Andersen <sonand@arkivverket.no>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2.3.0"
+fastapi = "^0.103.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
