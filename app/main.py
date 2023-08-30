@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import FastAPI
 
-from app.resources.health import Health
+from app.resources.healthresource import HealthResource
 from app.resources.resource import Resource
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # OBS: Dette er ikke den tradisjonelle måten å sette opp et FastAPI prosjekt på, men det er det som vil
     # ligne mest på det dere vil se i Spring/.NET
     resources = [
-        Health()
+        HealthResource()
     ]
     api = API(resources)
     import uvicorn

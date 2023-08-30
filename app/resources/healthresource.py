@@ -1,7 +1,7 @@
 from app.resources.resource import Resource
 
 
-class Health(Resource):
+class HealthResource(Resource):
 
     def __init__(self):
         super().__init__("/health")
