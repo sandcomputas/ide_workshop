@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from starlette.status import HTTP_200_OK
 
 from app.main import API
-from app.resources.healthresource import HealthResource
+from app.resources.health_resource import HealthResource
 
 
 class TestHealth:

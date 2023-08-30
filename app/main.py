@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import FastAPI
 
-from app.resources.healthresource import HealthResource
+from app.resources.health_resource import HealthResource
 from app.resources.resource import Resource
 
 
