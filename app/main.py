@@ -1,6 +1,25 @@
+from typing import List
+
+from fastapi import FastAPI
+
+from app.resources.health import Health
+from app.resources.resource import Resource
 
 
+class API(FastAPI):
+
+    def __init__(self, resources: List[Resource]):
+        super().__init__()
+        for resource in resources:
+            resource.register(self)
 
 
 if __name__ == "__main__":
-    print("Hellooooo")
+    # OBS: Dette er ikke den tradisjonelle måten å sette opp et FastAPI prosjekt på, men det er det som vil
+    # ligne mest på det dere vil se i Spring/.NET
+    resources = [
+        Health()
+    ]
+    api = API(resources)
+    import uvicorn
+    uvicorn.run(api, port=8080)
