@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.resources.health_resource import HealthResource
 from app.resources.resource import Resource
@@ -21,5 +22,6 @@ if __name__ == "__main__":
         HealthResource()
     ]
     api = API(resources)
+    api.mount("/", StaticFiles(directory="static", html=True), name="static")
     import uvicorn
     uvicorn.run(api, port=8080)

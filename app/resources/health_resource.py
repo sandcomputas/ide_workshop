@@ -1,3 +1,5 @@
+import json
+
 from app.resources.resource import Resource
 
 
@@ -9,4 +11,4 @@ class HealthResource(Resource):
 
     @staticmethod
     def health_check() -> str:
-        return "OK"
+        return json.dumps("OK")
