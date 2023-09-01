@@ -1,31 +1,18 @@
-from enum import Enum
-
-from app.resources.resource import Resource
-
-
-class Operation(str, Enum):
-    ADD = "Addition"
-    SUB = "Subtract"
-    MULT = "Multiply"
-    DIV = "Divide"
+from app.repositories.calculation_repository import CalculationRepository
+from app.models.calculation import Operation, Calculation
 
 
-# TODO: move to models folder
-class Calculation:
-    parameter1: float
-    parameter2: float
-    operation: Operation
-    answer: float
-
-
-# TODO: move to service folder
-class CalculatorService:
+class CalculationService:
 
     def __init__(self):
         # TODO: kanskje ha et repository som cacher resultater (kanskje skjer det noe feil under denne cachingine
-        ...
+        self.calculation_repository = CalculationRepository()
 
     def calculate(self, calculation: Calculation) -> Calculation:
+        answer_from_cache = self.calculation_repository.from_cache(calculation)
+        if answer_from_cache:
+            return answer_from_cache
+
         match calculation.operation:
             case Operation.ADD:
                 # DO add
@@ -43,12 +30,14 @@ class CalculatorService:
                 raise Exception("Operation not valid")
         return calculation
 
-class CalculatorResource(Resource):
+    def add(self, param1, param2):
+        return param1 + param2
 
-    def __init__(self):
-        super().__init__("/calculator")
-        self.calc_service = CalculatorService()
-        self._router.post("")(self.calculator)
+    def sub(self, param1, param2):
+        return param1 - param2
 
-    def calculator(self, calculation: Calculation):
-        ...
+    def mult(self, param1, param2):
+        return param1 * param2
+
+    def div(self, param1, param2):
+        return param1 / param2

@@ -10,6 +10,7 @@ from app.resources.health_resource import HealthResource
 class TestHealth:
 
     def setup_method(self):
+        # Runs before every test starts
         api = API([HealthResource()])
         self.client = TestClient(api)
 
