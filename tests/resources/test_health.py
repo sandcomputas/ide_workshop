@@ -1,3 +1,5 @@
+import json
+
 from fastapi.testclient import TestClient
 from starlette.status import HTTP_200_OK
 
@@ -14,4 +16,4 @@ class TestHealth:
     def test_health_ok(self):
         response = self.client.get("/health")
         assert response.status_code == HTTP_200_OK, "Response should always be 200 ok"
-        assert response.text == '"OK"'
+        assert json.loads(response.json())["status"] == "OK"

@@ -11,4 +11,4 @@ class HealthResource(Resource):
 
     @staticmethod
     def health_check() -> str:
-        return json.dumps("OK")
+        return json.dumps({"status": "OK"})
