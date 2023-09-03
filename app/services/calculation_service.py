@@ -28,6 +28,8 @@ class CalculationService:
                 calculation.answer = self.div(calculation.parameter1, calculation.parameter2)
             case _:
                 raise Exception("Operation not valid")
+
+        self.calculation_repository.new_calculation(calculation)
         return calculation
 
     def add(self, param1, param2):
