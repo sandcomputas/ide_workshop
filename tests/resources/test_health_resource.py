@@ -7,7 +7,7 @@ from app.main import API
 from app.resources.health_resource import HealthResource
 
 
-class TestHealth:
+class TestHealthResource:
 
     def setup_method(self):
         # Runs before every test starts

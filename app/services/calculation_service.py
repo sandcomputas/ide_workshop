@@ -1,4 +1,4 @@
-from app.repositories.calculation_repository import CalculationRepository
+from app.repositories.calculation_repository import CalculationRepository, NotFoundInCacheException
 from app.models.calculation import Operation, Calculation
 
 
@@ -7,12 +7,16 @@ class CalculationService:
     def __init__(self):
         # TODO: kanskje ha et repository som cacher resultater (kanskje skjer det noe feil under denne cachingine
         self.calculation_repository = CalculationRepository()
+        self.cache_miss = 0
 
     def calculate(self, calculation: Calculation) -> Calculation:
-        answer_from_cache = self.calculation_repository.from_cache(calculation)
-        if answer_from_cache:
-            return answer_from_cache
+        try:
+            return self.calculation_repository.from_cache(calculation)
+        except NotFoundInCacheException:
+            self.cache_miss += 1
+            return self._calculate(calculation)
 
+    def _calculate(self, calculation: Calculation):
         match calculation.operation:
             case Operation.ADD:
                 # DO add

@@ -38,6 +38,7 @@ class TestCalculationResource:
         self._test_calculation(param1, param2, operation=Operation.DIV, expected_result=expected_result)
 
     def test_cache(self):
+        # Note: Not really a test of cache - see tests/services/test_calculation_service.py
         self.test_calculation_add()
         self.test_calculation_add()
 
