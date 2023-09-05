@@ -9,12 +9,14 @@ from app.models.near_earth_object import NearEarthObject, EstimatedDiameter, Uni
 
 class NASANearEarthObjectWS:
     """https://api.nasa.gov/"""
-    def __init__(self, api_key: str | None = os.getenv("IDE_WORKSHOP__NASA_KEY")):
+    def __init__(self, api_key: str | None = None):
+        if not api_key:
+            api_key = os.getenv("IDE_WORKSHOP__NASA_KEY")
         assert api_key, "Please add api key for NASA to configuration (IDE_WORKSHOP__NASA_KEY)"
         self.api_key = api_key
         self.client = Client(base_url="https://api.nasa.gov/neo")
 
-    def coming_week_feed(self) -> list[NearEarthObject]:
+    def coming_week_feed(self) -> List[NearEarthObject]:
         """
         Retrieve a list of Asteroids based on their closest approach date to Earth in the coming week.
         """

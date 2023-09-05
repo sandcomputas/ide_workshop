@@ -1,10 +1,10 @@
-import json
-import os
-from pathlib import Path
 import re
+from pathlib import Path
 
 from pytest_httpx import HTTPXMock
+
 from app.connectors.nasa_near_earth_object_ws import NASANearEarthObjectWS
+from app.models.near_earth_object import NearEarthObject
 
 base_dir = f"{Path(__file__).parents[2]}"
 
@@ -25,8 +25,8 @@ def mock_nasa_feed(httpx_mock: HTTPXMock):
 
 def test_feed(httpx_mock: HTTPXMock):
     mock_nasa_feed(httpx_mock)
-    data = mock_data()
     nneows = NASANearEarthObjectWS(api_key="TRENGER IKKE NØKKEL")  # Requesten er mocket ut
     r = nneows.coming_week_feed()
-    ...
+    for obj in r:
+        assert isinstance(obj, NearEarthObject)
 

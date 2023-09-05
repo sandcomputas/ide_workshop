@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.resources.calculation_resource import CalculationResource
 from app.resources.health_resource import HealthResource
+from app.resources.near_earth_asteroid_resource import NearEarthAsteroidResource
 from app.resources.resource import Resource
 
 
@@ -21,7 +22,8 @@ if __name__ == "__main__":
     # ligne mest på det dere vil se i Spring/.NET
     resources = [
         HealthResource(),
-        CalculationResource()
+        CalculationResource(),
+        NearEarthAsteroidResource()
     ]
     api = API(resources)
     api.mount("/", StaticFiles(directory="static", html=True), name="static")

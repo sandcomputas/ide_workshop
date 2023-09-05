@@ -4,7 +4,7 @@ from app.connectors.nasa_near_earth_object_ws import NASANearEarthObjectWS
 from app.models.near_earth_object import NearEarthObject
 
 
-class NearEarthAsteriodsService:
+class NearEarthAsteroidsService:
 
     def __init__(self):
         self.nasa = NASANearEarthObjectWS()
@@ -12,5 +12,3 @@ class NearEarthAsteriodsService:
     def find_most_dangerous_asteroid(self) -> List[NearEarthObject]:
         near_earths = self.nasa.coming_week_feed()
         return near_earths
-
-
