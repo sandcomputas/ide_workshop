@@ -22,7 +22,7 @@ class NASANearEarthObjectWS:
         """
         response = self.client.get(f"/rest/v1/feed?api_key={self.api_key}")
         d = response.json()
-        result = self._extract_all_near_earth_events(d.get("near_earth_objects", None))  # TODO, typo in get("near...") can be a task?
+        result = self._extract_all_near_earth_events(d.get("near_earth_objects", None))
         return result
 
     @staticmethod

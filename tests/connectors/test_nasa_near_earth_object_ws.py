@@ -1,3 +1,4 @@
+import json
 import re
 from pathlib import Path
 
@@ -12,14 +13,14 @@ base_dir = f"{Path(__file__).parents[2]}"
 def mock_data():
     with open(f"{base_dir}/tests/connectors/nasa_feed_response.json") as nasa_feed:
         data = nasa_feed.read()
-    return data
+    return bytes(data, 'ascii')
 
 
 def mock_nasa_feed(httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="GET",
         url=re.compile('^https?:\/\/api\.nasa\.gov\/.*$'),
-        json=mock_data()
+        content=mock_data()
     )
 
 
