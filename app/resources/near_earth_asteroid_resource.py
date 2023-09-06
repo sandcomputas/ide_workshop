@@ -10,11 +10,7 @@ class NearEarthAsteroidResource(Resource):
     def __init__(self):
         super().__init__("/asteroids")
         self.service = NearEarthAsteroidsService()
-        self._router.get("")(self.asteroids)
+        self._router.get("")(self.hazardous_asteroids)
 
-    def asteroids(self) -> List[NearEarthObject]:
-        return self.service.find_most_dangerous_asteroid()
-
-
-
-
+    def hazardous_asteroids(self) -> List[NearEarthObject]:
+        return self.service.find_hazardous_asteroid()

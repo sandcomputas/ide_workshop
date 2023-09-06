@@ -4,7 +4,7 @@ from typing import Dict, List
 
 from httpx import Client
 
-from app.models.near_earth_object import NearEarthObject, EstimatedDiameter, Unit, CloseApproachData
+from app.models.near_earth_object import NearEarthObject, EstimatedDiameter, Unit
 
 
 class NASANearEarthObjectWS:
@@ -20,7 +20,6 @@ class NASANearEarthObjectWS:
         """
         Retrieve a list of Asteroids based on their closest approach date to Earth in the coming week.
         """
-        #response = self.client.get(f"/rest/v1/feed?start_date=START_DATE&end_date=END_DATE&api_key={self.api_key}")
         response = self.client.get(f"/rest/v1/feed?api_key={self.api_key}")
         d = json.loads(response.json())
         return self._extract_all_near_earth_events(d.get("near_earth_objects", None))  # TODO, typo in get("near...") can be a task?
@@ -37,19 +36,15 @@ class NASANearEarthObjectWS:
                 near_earth_obj = NearEarthObject(
                     id=object["id"],
                     name=object["name"],
-                    absolute_magnitude_h=object["absolute_magnitude_h"],
                     estimated_diameter=EstimatedDiameter(
                         unit=Unit.m,
                         min=object["estimated_diameter"]["meters"]["estimated_diameter_min"],
                         max=object["estimated_diameter"]["meters"]["estimated_diameter_max"]
                     ),
                     is_potentially_hazardous_asteroid=object["is_potentially_hazardous_asteroid"],
-                    close_approach_data=CloseApproachData(
-                        close_approach_date_full=object["close_approach_data"][0]["close_approach_date_full"],
-                        unix_time_close_approach=object["close_approach_data"][0]["epoch_date_close_approach"],
-                        miss_distance_km=object["close_approach_data"][0]["miss_distance"]["kilometers"],
-                        orbiting_body=object["close_approach_data"][0]["orbiting_body"]
-                    )
+                    close_approach_date_full=object["close_approach_data"][0]["close_approach_date_full"],
+                    miss_distance_km=object["close_approach_data"][0]["miss_distance"]["kilometers"],
+                    orbiting_body=object["close_approach_data"][0]["orbiting_body"]
                 )
                 near_earths.append(near_earth_obj)
         return near_earths

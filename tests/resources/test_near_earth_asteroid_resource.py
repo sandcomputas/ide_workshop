@@ -27,5 +27,5 @@ class TestNearEarthAsteroidResource:
     def test_resource(self, httpx_mock: HTTPXMock):
         mock_nasa_feed(httpx_mock)
         response = self.client.get("/asteroids")
-        near_earths = parse_obj_as(List[NearEarthObject], response.json())  # TODO: depricated, fix this someone
-        ...
+        hazardous_asteroids = parse_obj_as(List[NearEarthObject], response.json())  # TODO: depricated, fix this someone
+        assert len(hazardous_asteroids) == 16, "Expected 16 elements to be returned, based on mocked response"
