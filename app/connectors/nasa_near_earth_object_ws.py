@@ -21,8 +21,9 @@ class NASANearEarthObjectWS:
         Retrieve a list of Asteroids based on their closest approach date to Earth in the coming week.
         """
         response = self.client.get(f"/rest/v1/feed?api_key={self.api_key}")
-        d = json.loads(response.json())
-        return self._extract_all_near_earth_events(d.get("near_earth_objects", None))  # TODO, typo in get("near...") can be a task?
+        d = response.json()
+        result = self._extract_all_near_earth_events(d.get("near_earth_objects", None))  # TODO, typo in get("near...") can be a task?
+        return result
 
     @staticmethod
     def _extract_all_near_earth_events(near_earth_feed_raw: Dict[str, Dict]) -> List[NearEarthObject]:
