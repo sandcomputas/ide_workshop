@@ -1,11 +1,11 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("myForm");
-    const parameter1 = document.getElementById("parameter1");
-    const parameter2 = document.getElementById("parameter2");
+    const form = document.getElementById("add");
+    const parameter1 = document.getElementById("parameter1_add");
+    const parameter2 = document.getElementById("parameter2_add");
 
-    document.getElementById("submitButton").addEventListener("click", function () {
+    document.getElementById("submitButton_add").addEventListener("click", function () {
         const p1 = parameter1.value;
         const p2 = parameter2.value;
 
@@ -40,26 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-
-    function sendPostRequest2(data) {
-        const xhr = new XMLHttpRequest();
-        const url = "/calculation"; // Replace with your API endpoint URL
-
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    alert("POST request successful!");
-                } else {
-                    alert("POST request failed. Status: " + xhr.status);
-                }
-            }
-        };
-
-        xhr.send(JSON.stringify(data));
-    }
 });
 
 
