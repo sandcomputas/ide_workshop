@@ -8,7 +8,7 @@ from app.models.near_earth_object import NearEarthObject, EstimatedDiameter, Uni
 
 
 class NASANearEarthObjectWS:
-    """https://api.nasa.gov/"""
+    """Connector for talking to: https://api.nasa.gov/"""
     def __init__(self, api_key: str | None = None):
         if not api_key:
             api_key = os.getenv("IDE_WORKSHOP__NASA_KEY")

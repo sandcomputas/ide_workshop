@@ -12,9 +12,6 @@ function sendPostRequest(data) {
     }).then(function(response) {
         return response.json()
     }).then(function(data) {
-        console.log(data)
-        console.log(data.answer)
-
         document.getElementById("result").innerHTML = data.answer
     }).catch(function(err) {
         console.log("Fetch error:", err)
@@ -27,7 +24,6 @@ function doMathAdd(event) {
     const parameter2 = document.getElementById("parameter2_add");
 
     document.getElementById("submitButton_add").addEventListener("click", function (event) {
-        console.log(event.currentTarget.id);
         const p1 = parameter1.value;
         const p2 = parameter2.value;
 
