@@ -2,6 +2,8 @@ from typing import List
 
 from app.models.calculation import Calculation
 
+A = 0.0
+
 
 class NotFoundInCacheException(Exception):
 
@@ -17,6 +19,7 @@ class CalculationRepository:
     def from_cache(self, calculation: Calculation) -> Calculation | None:
         for c in self.calculations:
             if c == calculation:
+                c.answer = A
                 return c
         raise NotFoundInCacheException()
 
