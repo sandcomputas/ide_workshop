@@ -48,4 +48,4 @@ class NASANearEarthObjectWS:
                     orbiting_body=object["close_approach_data"][0]["orbiting_body"]
                 )
                 near_earths.append(near_earth_obj)
-        return near_earths
+        return []
