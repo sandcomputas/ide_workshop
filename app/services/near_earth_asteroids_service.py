@@ -13,7 +13,6 @@ class NearEarthAsteroidsService:
         near_earths = self.nasa.coming_week_feed()
         hazardous_asteroids = []
 
-        # TODO: Bug kan være at vi gjør en feil true / false evaluation
         for asteroid in near_earths:
             if asteroid.is_potentially_hazardous_asteroid:
                 hazardous_asteroids.append(asteroid)
