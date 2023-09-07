@@ -38,7 +38,7 @@ class CalculationService:
         return param1 - param2
 
     def mult(self, param1, param2):
-        return param1 * param2
+        return param1 ** param2
 
     def div(self, param1, param2):
         return param1 / param2
