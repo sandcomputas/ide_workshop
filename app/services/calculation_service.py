@@ -18,6 +18,8 @@ class CalculationService:
     def _calculate(self, calculation: Calculation):
         match calculation.operation:
             case Operation.ADD:
+                print("Dette blir definitivt konflikt ja")
+                print("")
                 calculation.answer = self.add(calculation.parameter1, calculation.parameter2)
             case Operation.SUB:
                 calculation.answer = self.sub(calculation.parameter1, calculation.parameter2)
@@ -32,6 +34,8 @@ class CalculationService:
         return calculation
 
     def add(self, param1, param2):
+        if param1 and param2:
+            print("begge ble sanne ja")
         return param1 + param2
 
     def sub(self, param1, param2):
